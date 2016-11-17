@@ -1,0 +1,49 @@
+.format {
+	color:  #A4A400;
+	background-color: #F0F0F0;
+	opacity: 0.6;
+	font-family: "Lucida Sans Unicode", Helvetica, Arial, sans-serif;
+}
+
+h1 {
+	text-align: center;
+	font-size: 22pt;
+	text-decoration: underline;
+	letter-spacing: 0.25em;
+}
+
+h2 {
+	text-align: left;
+	font-size: 18pt;
+	text-decoration: underline;
+	letter-spacing: 0.25em;
+}
+
+body {
+	width: 1024px;
+	background-color: white;
+}
+
+.text {
+	color :#404040;
+	font-size: 11pt;
+	font-family: Georgia, Garamond, serif;
+}
+
+a {
+	color: #A4A400;
+}
+
+img {
+	display:block;
+	margin-left:auto;
+}
+
+.validate {
+	display: inline-block;
+}
+
+#valid {
+	text-align: center;
+
+}
