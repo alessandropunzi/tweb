@@ -99,12 +99,14 @@ ul{
 	float: left;
 	width: 47%;
 	margin-left: 2%;
+	clear: left;
 }
 
 #rightalign{
 	float: right;
 	width: 47%;
 	margin-right: 2%;
+	clear: right;
 }
 
 #bottombar{

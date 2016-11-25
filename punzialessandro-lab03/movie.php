@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 		<?php
+
+/* getInfo per ottenere il titolo, anno e numero in percentuale della recensione*/
 			function getInfo($filmname)
 			{
 				$lines = file("$filmname/info.txt",FILE_IGNORE_NEW_LINES);
 				return $lines;
 			}
+
+/* getOverview per estrarre le informazioni da inserire nella sezione General Overview */
 			function getOverview($filmname)
 			{
 				$text = file_get_contents("$filmname/overview.txt");
@@ -12,6 +16,8 @@
 				$over = explode(":",$text);
 				return $over;
 			}
+
+/* getReview per estrarre le recensioni dai file di testo*/
 			function getReview($filmname)
 			{
 				$review = glob("$filmname/review*.txt");
@@ -33,8 +39,10 @@
 			</div>
 		</div>
 		<?php
-			$movie = $_GET["film"];
-			list($title, $year, $rating) = getInfo($movie);
+
+
+			$movie = $_GET["film"]; /* memorizzo nella variabile movie il nome del film scritto nella query string*/
+			list($title, $year, $rating) = getInfo($movie); /* inserisco i campi presenti nel file info.txt all'interno delle variabili titolo,anno, recensione*/
 		?>
 		<h1> <?= $title ?> (<?= $year ?>) </h1>
 
@@ -47,6 +55,9 @@
 
 				<dl>
 					<?php
+
+/* ciclo per inserire le informazioni nella sezione General Overview*/
+
 						$overview = getOverview($movie);
 						for ($i=0; $i < count($overview); $i++) 
 						{ 
@@ -68,6 +79,8 @@
 			<div id="leftbar">
 				<div id="bar">
 					<?php
+
+/* controllo sul rating: se è maggiore di 60 inserisco l'immagine freshbig*/
 						if ($rating >= 60)
 						{
 							$var1 = "http://www.cs.washington.edu/education/courses/cse190m/11sp/homework/2/freshbig.png";
@@ -82,8 +95,12 @@
 					<?= $rating ?>%
 				</div>
 				<?php
+				
+/* ciclo per inserire le recensioni quelle pari a sinistra quelle dispari a destra e controllo sulle immagini rotten e fresh*/
 					$reviews = getReview($movie);
 					$length = count($reviews);
+					$div = 2;
+					$middle = $length / $div; 
 					for ($i=0; $i < $length; $i++) 
 					{ 
 						$lines = file("$reviews[$i]",FILE_IGNORE_NEW_LINES);
@@ -96,36 +113,35 @@
 							$gif = "http://www.cs.washington.edu/education/courses/cse190m/11sp/homework/2/fresh.gif";
 							$alt = "Fresh";
 						}
+						
 						if($i % 2 == 0)
 						{
-							
 				?>
-				<div id="leftalign">
-					<p class="quote">
-						<img class="img" src= <?= $gif ?> alt= <?= $alt ?> />
-						<q> <?= $lines[0] ?> </q>
-					</p>
-					<p class="critic">
-						<img class="img" src="http://www.cs.washington.edu/education/courses/cse190m/11sp/homework/2/critic.gif" alt="Critic"/>
-						<?= $lines[2] ?> <br />
-						<i> <?= $lines[3] ?> </i>
-					</p>
-				</div>
+					<div id="leftalign">
+						<p class="quote">
+							<img class="img" src= <?= $gif ?> alt= <?= $alt ?> />
+							<q> <?= $lines[0] ?> </q>
+						</p>
+						<p class="critic">
+							<img class="img" src="http://www.cs.washington.edu/education/courses/cse190m/11sp/homework/2/critic.gif" alt="Critic"/>
+							<?= $lines[2] ?> <br />
+							<i> <?= $lines[3] ?> </i>
+						</p>
+					</div>
 				<?php
 						}else
 						{
 				?>
-
-				<div id="rightalign">
-					<p class="quote">
-						<img class="img" src= <?= $gif ?> alt= <?= $alt ?> />
-						<q> <?= $lines[0] ?> </p>
-					<p class="critic">
-						<img class="img" src="http://www.cs.washington.edu/education/courses/cse190m/11sp/homework/2/critic.gif" alt="Critic" />
-						<?= $lines[2] ?>  <br />
-						<i> <?= $lines[3] ?> </i>
-					</p>
-				</div>
+					<div id="rightalign">
+						<p class="quote">
+							<img class="img" src= <?= $gif ?> alt= <?= $alt ?> />
+							<q> <?= $lines[0] ?> </p>
+						<p class="critic">
+							<img class="img" src="http://www.cs.washington.edu/education/courses/cse190m/11sp/homework/2/critic.gif" alt="Critic" />
+							<?= $lines[2] ?>  <br />
+							<i> <?= $lines[3] ?> </i>
+						</p>
+					</div>
 				<?php
 						}
 					}
