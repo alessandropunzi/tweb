@@ -1,0 +1,42 @@
+body, button {
+    font-size: 14pt;
+	text-align: center;
+    font-family: Arial,Verdana,sans-serif;
+	font-style: italic;
+}
+
+#puzzlearea {
+    position: relative;
+	margin-left: auto;
+	margin-right: auto;
+	font-size: 40pt;
+	width: 400px;
+	height: 400px;
+}
+
+.puzzle {
+    position: absolute;
+    background-image: url(background.jpg);
+	border: 5px solid black;
+	width: 90px;
+	height: 90px;
+}
+
+.freeblock:hover {
+	border-color: red;
+	color: red;
+}
+
+.win {
+	background-color: #bfb;
+}
+
+
+.lose {
+	background-color: #f88;
+}
+
+#text {
+    width: 400px;
+    margin: 0 auto;
+} 
